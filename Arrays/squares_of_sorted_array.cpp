@@ -13,7 +13,6 @@ int main() {
     vector<int> nums = {-4, -1, 0, 3, 10};
     int n = nums.size();
     vector<int> result(n);
-
     int l = 0, r = n - 1, idx = n - 1;
 
     while (l <= r) {
