@@ -1,0 +1,35 @@
+// Problem: Move Zeroes
+// Link: https://leetcode.com/problems/move-zeroes/
+// Approach: Two pointers (in-place swapping)
+// Time Complexity: O(n)
+// Space Complexity: O(1)
+
+#include <bits/stdc++.h>
+using namespace std;
+
+class Solution {
+public:
+    void moveZeroes(vector<int>& nums) {
+        int j = 0; // position for next non-zero element
+
+        for (int i = 0; i < nums.size(); i++) {
+            if (nums[i] != 0) {
+                swap(nums[i], nums[j]);
+                j++;
+            }
+        }
+    }
+};
+
+int main() {
+    vector<int> nums = {0, 1, 0, 3, 12};
+
+    Solution obj;
+    obj.moveZeroes(nums);
+
+    for (int x : nums) {
+        cout << x << " ";
+    }
+
+    return 0;
+}
