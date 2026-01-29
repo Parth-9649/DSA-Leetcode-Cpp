@@ -1,53 +1,46 @@
-/*
-Problem: LeetCode 242 - Valid Anagram
-Link: https://leetcode.com/problems/valid-anagram/
-Topic: Hashing / Frequency Counting
-Complexity: 
-    Time  - O(n) where n = length of string s
-    Space - O(1) (array of size 26)
-*/
-
-#include <bits/stdc++.h>
+/* Problem: LeetCode 242 - Valid Anagram Link: https://leetcode.com/problems/valid-anagram/ 
+Topic: Hashing 
+/ Frequency Counting Complexity: Time - O(n)
+ where n = length of string s Space - O(1)
+(array of size 26) */
+#include <iostream>
+#include <vector>
+#include <string>
 using namespace std;
 
 class Solution {
 public:
     bool isAnagram(string s, string t) {
-        if(s.length() != t.length()) return false;
+        if (s.length() != t.length()) return false;
 
         int count[26] = {0};
 
-        // Count letters in s
-        for(int i = 0; i < s.length(); i++) {
-            int idx = s[i] - 'a';
-            count[idx]++;
+        for (int i = 0; i < s.length(); i++) {
+            count[s[i] - 'a']++;
         }
 
-        // Subtract letters in t
-        for(int i = 0; i < t.length(); i++) {
-            int idx = t[i] - 'a';
-            if(count[idx] == 0) return false; // extra letter in t
-            count[idx]--;
+        for (int i = 0; i < t.length(); i++) {
+            if (count[t[i] - 'a'] == 0) return false;
+            count[t[i] - 'a']--;
         }
 
         return true;
     }
 };
 
-// GitHub-ready main function
 int main() {
     Solution sol;
 
-    vector<pair<string,string>> tests = {
+    vector<pair<string, string>> tests = {
         {"anagram", "nagaram"},
         {"rat", "car"},
         {"listen", "silent"},
         {"hello", "bello"}
     };
 
-    for(auto &[s, t] : tests) {
-        cout << "s: \"" << s << "\", t: \"" << t << "\" -> ";
-        cout << (sol.isAnagram(s, t) ? "True" : "False") << "\n";
+    for (auto &p : tests) {
+        cout << "s: \"" << p.first << "\", t: \"" << p.second << "\" -> ";
+        cout << (sol.isAnagram(p.first, p.second) ? "True" : "False") << "\n";
     }
 
     return 0;
